@@ -84,7 +84,7 @@ for t, esperado in [("sim", True), ("sim, pode apagar", True), ("pode", True), (
                     ("pode listar antes?", False), ("faz um backup primeiro", False), ("não", False), ("ok?", False),
                     ("sim, mas antes faz backup", False), ("s, mas antes faz backup", False),
                     ("sim, não apaga", False), ("s não", False), ("sim, cancela", False), ("yes no", False),
-                    ("sí", True), ("sí, bórrala", True), ("sí, pero antes", False), ("no", False)]:
+                    ("sí", True), ("sim, pode apagar o que está no log", True), ("no, wait", False), ("sí, bórrala", True), ("sí, pero antes", False), ("no", False)]:
     caso(f"confirmação '{t}' = {esperado}", bot.eh_sim(t) == esperado)
 os.symlink(os.path.expanduser("~/.ssh"), os.path.join(bot.AREA, "atalho")) if not os.path.lexists(os.path.join(bot.AREA, "atalho")) else None
 caso("recusa link para fora", recusa("rm -r atalho/known_hosts"))

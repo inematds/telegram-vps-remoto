@@ -35,7 +35,7 @@ En la VPS, **como usuario común** (no root):
 ```bash
 git clone https://github.com/inematds/telegram-vps-remoto.git
 cd telegram-vps-remoto
-bash instalar.sh                      # solicita el token sin mostrarlo, ejecuta las 50 pruebas (2–5 min), activa el servicio
+bash instalar.sh                      # solicita el token sin mostrarlo, ejecuta las 52 pruebas (2–5 min), activa el servicio
 # en Telegram: envía /start a tu bot; dice "Este bot é privado."
 journalctl --user -u telegram-vps-remoto -n 20 --no-pager | grep recusado   # → recusado: from.id=123456789
 bash instalar.sh --dono 123456789     # te registra en DONOS y reinicia
@@ -56,7 +56,7 @@ Archivos:
 |---|---|
 | `bot.py` | El bot (solo biblioteca estándar, long polling, sin puertos abiertos). |
 | `instalar.sh` | Instala/actualiza en `~/kits/telegram-vps-remoto`, crea `.env` (600), ejecuta las pruebas y activa el servicio; `--dono`, `--status`. Idempotente. |
-| `testes/testar_travas.py` | 50 pruebas de las protecciones (8 llamadas breves de Claude Code con la suscripción), con carpeta y auditoría temporales, y señuelos de secretos dentro y fuera de la carpeta. |
+| `testes/testar_travas.py` | 52 pruebas de las protecciones (8 llamadas breves de Claude Code con la suscripción), con carpeta y auditoría temporales, y señuelos de secretos dentro y fuera de la carpeta. |
 | `systemd/telegram-vps-remoto.service` | Servicio de usuario (`MemoryMax=2G`, se reinicia solo). |
 | `ferramentas/telegram_falso.py` | Telegram falso para probar sin un bot real (`TELEGRAM_API=http://127.0.0.1:8081`). |
 | `.env.example` | Variables: `TELEGRAM_BOT_TOKEN`, `DONOS`, `MODELO`, `AREA`, `PRAZO_OK_S`, `TELEGRAM_API`. |
@@ -74,7 +74,7 @@ Quién hace qué: 🧠 tú · ⚙️ script/servicio · 🤖 Claude Code (`claud
 | 2 | Entrar a la VPS como usuario común y descargar el kit | `git clone … && cd telegram-vps-remoto` | 🧠 |
 | 3 | Verificar Python y que Claude Code tenga la sesión iniciada | `bash instalar.sh` (paso 1/6) | ⚙️ |
 | 4 | Copiar el bot y crear `.env` 600 con el token | `bash instalar.sh` (pasos 2–3) | ⚙️ |
-| 5 | Ejecutar las 50 pruebas de las protecciones | `bash instalar.sh` (paso 4) | ⚙️🤖 |
+| 5 | Ejecutar las 52 pruebas de las protecciones | `bash instalar.sh` (paso 4) | ⚙️🤖 |
 | 6 | Activar el servicio de usuario | `bash instalar.sh` (paso 5) | ⚙️ |
 | 7 | Enviar `/start` y encontrar tu ID en el registro | `journalctl --user -u telegram-vps-remoto … \| grep recusado` | 🧠 |
 | 8 | Registrar tu ID como propietario | `bash instalar.sh --dono <id>` | 🧠⚙️ |
@@ -83,7 +83,7 @@ Quién hace qué: 🧠 tú · ⚙️ script/servicio · 🤖 Claude Code (`claud
 
 ## La prueba
 
-- `testar_travas.py` en la VPS de prueba (Ubuntu 24.04): **50 APROBADAS, TODO OK** — la lista vacía rechaza, la lectura responde, `.env` y el señuelo fuera de la carpeta no salen (ni mediante `du --files0-from` ni por enlace simbólico), la IA no borra ni con una orden directa, se rechazan 18 comandos/opciones peligrosos, se verifican 18 confirmaciones (incluido «sí»), flujo pedido → propuesta → «sim» (sí) → borrado.
+- `testar_travas.py` en la VPS de prueba (Ubuntu 24.04): **52 APROBADAS, TODO OK** — la lista vacía rechaza, la lectura responde, `.env` y el señuelo fuera de la carpeta no salen (ni mediante `du --files0-from` ni por enlace simbólico), la IA no borra ni con una orden directa, se rechazan 18 comandos/opciones peligrosos, se verifican 20 confirmaciones (incluido «sí»), flujo pedido → propuesta → «sim» (sí) → borrado.
 - `instalar.sh` probado de principio a fin en una carpeta nueva de la VPS, con el Telegram falso: la suite de esa versión (45) pasó, el servicio quedó activo, se rechazó y registró un `/start` de una persona desconocida, se registró `--dono`, se respondió una pregunta («Hay 131 GB libres de 193 GB») y se reinstaló conservando `.env`.
 - Las vulnerabilidades encontradas por revisores independientes y corregidas están en [FALHAS.md](FALHAS.md).
 

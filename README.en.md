@@ -35,7 +35,7 @@ On the VPS, **as a regular user** (not root):
 ```bash
 git clone https://github.com/inematds/telegram-vps-remoto.git
 cd telegram-vps-remoto
-bash instalar.sh                      # asks for the token without displaying it, runs 50 tests (2–5 min), starts the service
+bash instalar.sh                      # asks for the token without displaying it, runs 52 tests (2–5 min), starts the service
 # on Telegram: send /start to your bot; it says "Este bot é privado."
 journalctl --user -u telegram-vps-remoto -n 20 --no-pager | grep recusado   # → recusado: from.id=123456789
 bash instalar.sh --dono 123456789     # adds you to DONOS and restarts
@@ -56,7 +56,7 @@ Files:
 |---|---|
 | `bot.py` | The bot (standard library only, long polling, no open ports). |
 | `instalar.sh` | Installs or updates to `~/kits/telegram-vps-remoto`, creates `.env` (600), runs tests, and starts the service; supports `--dono` and `--status`. Idempotent. |
-| `testes/testar_travas.py` | 50 safeguard tests (8 short Claude Code calls through the subscription), with temporary working and audit folders, plus secret decoys inside and outside the working folder. |
+| `testes/testar_travas.py` | 52 safeguard tests (8 short Claude Code calls through the subscription), with temporary working and audit folders, plus secret decoys inside and outside the working folder. |
 | `systemd/telegram-vps-remoto.service` | User service (`MemoryMax=2G`, restarts automatically). |
 | `ferramentas/telegram_falso.py` | Fake Telegram for testing without a real bot (`TELEGRAM_API=http://127.0.0.1:8081`). |
 | `.env.example` | Variables: `TELEGRAM_BOT_TOKEN`, `DONOS`, `MODELO`, `AREA`, `PRAZO_OK_S`, `TELEGRAM_API`. |
@@ -74,7 +74,7 @@ Who does what: 🧠 you · ⚙️ script/service · 🤖 Claude Code (`claude -p
 | 2 | Log in to the VPS as a regular user and download the kit | `git clone … && cd telegram-vps-remoto` | 🧠 |
 | 3 | Check Python and that Claude Code is logged in | `bash instalar.sh` (step 1/6) | ⚙️ |
 | 4 | Copy the bot and create `.env` with permissions 600 and the token | `bash instalar.sh` (steps 2–3) | ⚙️ |
-| 5 | Run the 50 safeguard tests | `bash instalar.sh` (step 4) | ⚙️🤖 |
+| 5 | Run the 52 safeguard tests | `bash instalar.sh` (step 4) | ⚙️🤖 |
 | 6 | Start the user service | `bash instalar.sh` (step 5) | ⚙️ |
 | 7 | Send `/start` and find your ID in the log | `journalctl --user -u telegram-vps-remoto … \| grep recusado` | 🧠 |
 | 8 | Add your ID as an owner | `bash instalar.sh --dono <id>` | 🧠⚙️ |
@@ -83,7 +83,7 @@ Who does what: 🧠 you · ⚙️ script/service · 🤖 Claude Code (`claude -p
 
 ## The proof
 
-- `testar_travas.py` on the test VPS (Ubuntu 24.04): **50 PASSOU, TUDO OK** — an empty owner list rejects requests; reading works; `.env` and the decoy outside the working folder aren’t exposed (not even through `du --files0-from` or a symbolic link); the AI won’t delete files even when directly instructed; 18 dangerous commands/options are rejected; 18 confirmations are checked (including “sí”); request → proposal → “sim” (yes) → deleted.
+- `testar_travas.py` on the test VPS (Ubuntu 24.04): **52 PASSOU, TUDO OK** — an empty owner list rejects requests; reading works; `.env` and the decoy outside the working folder aren’t exposed (not even through `du --files0-from` or a symbolic link); the AI won’t delete files even when directly instructed; 18 dangerous commands/options are rejected; 20 confirmations are checked (including “sí”); request → proposal → “sim” (yes) → deleted.
 - `instalar.sh` tested end to end in a new folder on the VPS with the fake Telegram: the test suite from that run (45) passed, the service stayed up, `/start` from an unauthorized user was rejected and logged, `--dono` was saved, a question was answered (“There are 131 GB free out of 193 GB”), and reinstalling kept `.env`.
 - Issues found and fixed by independent reviewers are documented in [FALHAS.md](FALHAS.md).
 

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Your VPS on your phone: AI reads, you say yes — Telegram VPS remoto</title>
-<meta name="description" content="Ready-to-use kit: a Telegram bot that passes your requests to Claude Code, through your subscription, on your VPS. Only you can talk to it, the AI only reads, and any change waits for your yes. 50 safety checks.">
+<meta name="description" content="Ready-to-use kit: a Telegram bot that passes your requests to Claude Code, through your subscription, on your VPS. Only you can talk to it, the AI only reads, and any change waits for your yes. 52 safety checks.">
 <link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/telegram-vps-remoto/guia/">
 <link rel="alternate" hreflang="en" href="https://inematds.github.io/telegram-vps-remoto/guia/en/">
 <link rel="alternate" hreflang="es" href="https://inematds.github.io/telegram-vps-remoto/guia/es/">
@@ -200,8 +200,8 @@
 <main>
 <section id="resumo" class="resumo"><div class="wrap">
   <span class="chip">In a nutshell</span>
-  <p>It's a <strong>ready-to-use kit</strong> that lets you manage your <strong>VPS</strong> (a rented server on the internet that's always on) from your phone: a <strong>Telegram</strong> bot that passes your requests to <strong>Claude Code</strong> (Claude as a program that works inside the server), through the subscription you already pay for. Only you can talk to the bot, the AI only reads, and any change waits for your "yes." An installer does everything and runs 50 safety checks before starting the bot. Tested on Ubuntu 24.04 (the most widely used Linux server OS).</p>
-  <figure style="margin:22px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="../assets/banner-grade-en.jpg" alt="Telegram VPS remoto: only you can talk, AI only reads files in the folder, proposes changes and asks Confirm, saying no cancels, everything is logged, 50 checks" loading="lazy" style="width:100%;display:block"></figure>
+  <p>It's a <strong>ready-to-use kit</strong> that lets you manage your <strong>VPS</strong> (a rented server on the internet that's always on) from your phone: a <strong>Telegram</strong> bot that passes your requests to <strong>Claude Code</strong> (Claude as a program that works inside the server), through the subscription you already pay for. Only you can talk to the bot, the AI only reads, and any change waits for your "yes." An installer does everything and runs 52 safety checks before starting the bot. Tested on Ubuntu 24.04 (the most widely used Linux server OS).</p>
+  <figure style="margin:22px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="../assets/banner-grade-en.jpg" alt="Telegram VPS remoto: only you can talk, AI only reads files in the folder, proposes changes and asks Confirm, saying no cancels, everything is logged, tested on a VPS" loading="lazy" style="width:100%;display:block"></figure>
   <div class="card" style="margin-top:22px;border-left:3px solid var(--fill)"><h3>✅ It's for you if…</h3><ul>
     <li>You have a <strong>Linux VPS</strong> (we tested on Ubuntu 24.04) and can access it through the terminal.</li>
     <li>You have a <strong>paid Claude plan</strong>. If Claude Code isn't on your VPS yet, the AI will help you install it.</li>
@@ -252,7 +252,7 @@
     <div class="card"><h3>🛑 "No" really cancels</h3><p>"sim" (yes) and "sim, pode apagar" (yes, you can delete it) confirm. "sim, não apaga" (yes, don't delete it), "sim, mas antes…" (yes, but first…) or "pode listar antes?" (can you list it first?) don't confirm. The request is valid for only 10 minutes.</p></div>
     <div class="card"><h3>📁 The working folder</h3><p>It's a folder just for the bot, next to it on the server (<strong>area</strong>, inside the kit folder), and it starts empty. Put the files you want it to read or organize there. You can point it to another folder in a configuration line, but only choose a folder you're okay with it reading and changing after you say yes.</p></div>
     <div class="card"><h3>📒 Everything is logged</h3><p>Every request, proposal, yes, refusal, and result is saved in a log file that only you can read on the server. The server also keeps the bot's own log (the lines it writes while running), which shows who tried to talk to it.</p></div>
-    <div class="card"><h3>🌎 In your language</h3><p>The bot replies in the language you write in. Only the fixed phrases stay in Portuguese: "Confirma? (sim/não)" (Confirm? (yes/no)) and "Este bot é privado." (This bot is private.) Accepted confirmations include "sim" (yes), "sí" (yes), and "yes."</p></div>
+    <div class="card"><h3>🌎 In your language</h3><p>The AI’s answers come in the language you write in. The bot’s fixed messages are in Portuguese: "Este bot é privado." (This bot is private.), "Pronto. Peça o que quiser…" (Ready. Ask for anything…, the reply to /start), "Vou fazer:" (I will do:), "Comandos:" (Commands:), "Confirma? (sim/não)" (Confirm? (yes/no)), "Feito:" (Done:), "Cancelado. Nada foi mudado." (Cancelled. Nothing was changed.), "Esse pedido expirou…" (This request expired…), "Isso eu não faço por aqui…" (I don’t do that from here…) and "Deu erro:" (Error:). To confirm, "sim", "sí" or "yes" all work.</p></div>
     <div class="card"><h3>🧱 It doesn't inherit anything from the machine</h3><p>If you've already allowed commands for Claude Code on the server, the bot ignores that: only its own safety checks apply.</p></div>
   </div>
   <div class="card" style="margin-top:16px"><h3>⚠️ What this doesn't promise</h3><p>It can't make Claude get everything right: it can give a wrong answer. What is guaranteed is that it won't change anything without going through a proposal and your "yes." The bot manages its working folder, not the whole server: keep using the terminal to work on the system, databases, or other projects.</p></div>
@@ -263,7 +263,7 @@
   <h2>Ask your AI to <span class="amb">install the kit</span></h2>
   <p class="sub">You don't install anything by hand. Claude Code on your VPS reads the project, checks the server, and sets everything up. You paste the bot token yourself into a terminal command, outside the conversation, so it never passes through the AI.</p>
   <div class="grid g2">
-    <div class="card"><h3>0. Do you only have root?</h3><p>Log in to your VPS as root, open Claude Code (if you don't have it yet, install it from the <a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">official page</a>; it's a single command to paste), and paste the request below. It creates your regular user, enables the option that keeps the bot running after you log out, and tells you how to log in as the new user.</p></div>
+    <div class="card"><h3>0. Do you only have root?</h3><p>Log in to your VPS as root, open Claude Code (if you don't have it yet, install it from the <a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">official page</a>; it's a single command to paste), and paste the request below. It creates your regular user, enables the option that keeps the bot running after you log out, and tells you how to log in as the new user. In that user, Claude Code is installed and logged in once more (just this once).</p></div>
     <div class="card"><h3>1. Create your bot</h3><p>On Telegram, message <strong>@BotFather</strong>, send /newbot, choose a name and a username ending in "bot." It gives you a token (a long password for the bot). Save it.</p></div>
     <div class="card"><h3>2. Paste the request into Claude Code on your VPS</h3><p>As your regular user, open Claude Code and paste the request below. It explains the plan and waits for your "yes." Installation takes 2 to 5 minutes and uses a few short Claude subscription calls to test the safety checks.</p></div>
     <div class="card"><h3>3. Tell it you're the owner</h3><p>At the end, send /start to the bot. The AI will help you find your Telegram ID in the bot's log and save you as the owner. That's it: make requests from your phone.</p></div>
@@ -273,7 +273,7 @@
 Then check this VPS and reply in simple English:
 1. Am I logged in as root or as a regular user? Do I have Python 3.10 or later?
 2. What's missing, and what's the plan for installing the kit?
-If I'm logged in as root: the kit doesn't run as root. Propose creating a regular user for me, enabling linger for that user (loginctl enable-linger, so the bot keeps running after I log out), copying my SSH access key to that user, and telling me how to log in directly as that user over SSH (su - won't work). Once logged in as that user, help me install and log in to Claude Code through my subscription, then continue the installation from there.
+If I'm logged in as root: the kit doesn't run as root. Propose creating a regular user for me, enabling linger for that user (loginctl enable-linger, so the bot keeps running after I log out), copying my SSH access key to that user, and telling me how to log in directly as that user over SSH (log in directly as the new user; don’t switch users inside the root session). If today I log in only with a password, help me get into the new user the safest way. Once logged in as that user, help me install and log in to Claude Code through my subscription, then continue the installation from there.
 Don't do anything before I say yes. NEVER ask me for the bot token here in chat: when the time comes, tell me the exact command to run in the terminal and where to paste the token so it won't be displayed.
 Also check that linger is enabled; without it, the bot stops when I log out of the server.
 After I run it, help me find my Telegram ID in the bot's log and save me as the owner.</pre>
@@ -287,9 +287,9 @@ After I run it, help me find my Telegram ID in the bot's log and save me as the 
   <span class="chip">The proof</span>
   <h2>Tested before it <span class="amb">gets to you</span></h2>
   <div class="grid g3">
-    <div class="card"><h3 class="num">50 of 50</h3><p>Safety checks passed on a VPS running Ubuntu 24.04. The installer runs all of them before starting the bot; if one fails, it stops.</p></div>
+    <div class="card"><h3 class="num">52 of 52</h3><p>Safety checks passed on a VPS running Ubuntu 24.04; 8 of them call Claude for real. The installer runs all of them before starting the bot; if one fails, it stops.</p></div>
     <div class="card"><h3 class="num">18 refusals</h3><p>Commands and dangerous shortcuts the bot refuses: deleting outside the folder, chaining commands, using an administrator account, wildcards, links that lead outside, and more.</p></div>
-    <div class="card"><h3 class="num">18 confirmations</h3><p>Ways of replying checked one by one: "sim" (yes), "sí" (yes), and "sim, pode apagar" (yes, you can delete it) confirm; "sim, não apaga" (yes, don't delete it), "sí, pero antes" (yes, but first), and "ok?" don't.</p></div>
+    <div class="card"><h3 class="num">20 confirmations</h3><p>Ways of replying checked one by one: "sim" (yes), "sí" (yes), and "sim, pode apagar" (yes, you can delete it) confirm; "sim, não apaga" (yes, don't delete it), "sí, pero antes" (yes, but first), and "ok?" don't.</p></div>
   </div>
   <div class="card" style="margin-top:16px"><h3>🧪 The installer, start to finish</h3><p>We ran the installer in a fresh folder on a test VPS with a fake Telegram account: the checks passed, the service started, a stranger sent /start and was refused and logged, the owner was saved, and the question "how much free disk space is there?" got the right answer. Running it again updated the bot without losing the token.</p></div>
   <div class="card" style="margin-top:16px"><h3>🔍 Security gaps found and fixed</h3><p>Independent reviewers read the code looking for ways to break it. Each round found a different gap, and each was fixed with a test: the AI inherited server permissions, could read outside the folder (including through a file shortcut), and "sim, não apaga" (yes, don't delete it) counted as yes. The list is in the repository.</p></div>
@@ -312,7 +312,7 @@ After I run it, help me find my Telegram ID in the bot's log and save me as the 
 
 <footer>
   <div class="wrap">
-    <div class="pill">Telegram</div><div class="pill">Claude Code</div><div class="pill">Python 3</div><div class="pill">systemd</div>
+    <div class="pill">Telegram</div><div class="pill">Claude Code</div><div class="pill">Python 3</div>
     <p style="margin-top:18px">Telegram VPS remoto · free on inema.club, right on the internet ·
       <a href="https://github.com/inematds/telegram-vps-remoto">inematds/telegram-vps-remoto</a> ·
       <a href="https://inema.club">INEMA.CLUB</a></p>

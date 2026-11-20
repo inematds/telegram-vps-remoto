@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sua VPS no celular: a IA lê, você diz sim — Telegram VPS remoto</title>
-<meta name="description" content="Kit pronto: um bot de Telegram que passa os seus pedidos ao Claude Code, pela assinatura, na sua VPS. Só você fala com ele, a IA só lê, e qualquer mudança espera o seu sim. 50 testes das travas.">
+<meta name="description" content="Kit pronto: um bot de Telegram que passa os seus pedidos ao Claude Code, pela assinatura, na sua VPS. Só você fala com ele, a IA só lê, e qualquer mudança espera o seu sim. 52 testes das travas.">
 <link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/telegram-vps-remoto/guia/">
 <link rel="alternate" hreflang="en" href="https://inematds.github.io/telegram-vps-remoto/guia/en/">
 <link rel="alternate" hreflang="es" href="https://inematds.github.io/telegram-vps-remoto/guia/es/">
@@ -200,8 +200,8 @@
 <main>
 <section id="resumo" class="resumo"><div class="wrap">
   <span class="chip">Em uma frase</span>
-  <p>É um <strong>kit pronto</strong> para você cuidar da sua <strong>VPS</strong> (um servidor alugado na internet, sempre ligado) pelo celular: um bot de <strong>Telegram</strong> que passa os seus pedidos para o <strong>Claude Code</strong> (o Claude em forma de programa que trabalha dentro do servidor), pela assinatura que você já paga. Só você fala com o bot, a IA só lê, e qualquer mudança espera o seu "sim". Um instalador faz tudo e roda 50 testes das travas antes de ligar o bot. Testado no Ubuntu 24.04 (o Linux mais usado em servidor).</p>
-  <figure style="margin:22px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="assets/banner-grade.jpg" alt="Telegram VPS remoto: só você fala, a IA só lê na pasta, proposta e Confirma, dizer não cancela, tudo anotado, 50 testes" loading="lazy" style="width:100%;display:block"></figure>
+  <p>É um <strong>kit pronto</strong> para você cuidar da sua <strong>VPS</strong> (um servidor alugado na internet, sempre ligado) pelo celular: um bot de <strong>Telegram</strong> que passa os seus pedidos para o <strong>Claude Code</strong> (o Claude em forma de programa que trabalha dentro do servidor), pela assinatura que você já paga. Só você fala com o bot, a IA só lê, e qualquer mudança espera o seu "sim". Um instalador faz tudo e roda 52 testes das travas antes de ligar o bot. Testado no Ubuntu 24.04 (o Linux mais usado em servidor).</p>
+  <figure style="margin:22px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="assets/banner-grade.jpg" alt="Telegram VPS remoto: só você fala, a IA só lê na pasta, proposta e Confirma, dizer não cancela, tudo anotado, testado numa VPS" loading="lazy" style="width:100%;display:block"></figure>
   <div class="card" style="margin-top:22px;border-left:3px solid var(--fill)"><h3>✅ Serve para você se…</h3><ul>
     <li>Você tem uma <strong>VPS com Linux</strong> (testamos no Ubuntu 24.04) e consegue entrar nela pelo terminal.</li>
     <li>Você tem um <strong>plano pago do Claude</strong>. Se o Claude Code ainda não está na VPS, a IA te ajuda a instalar.</li>
@@ -252,7 +252,7 @@
     <div class="card"><h3>🛑 "Não" cancela de verdade</h3><p>"sim" e "sim, pode apagar" confirmam. "sim, não apaga", "sim, mas antes…" ou "pode listar antes?" não confirmam. E o pedido vale só 10 minutos.</p></div>
     <div class="card"><h3>📁 A pasta de trabalho</h3><p>É uma pasta só do bot, ao lado dele no servidor (<strong>area</strong>, dentro da pasta do kit), e começa vazia. Você coloca nela os arquivos que quer que ele leia ou organize. Dá para apontar para outra pasta numa linha de configuração, mas só aponte para uma pasta que você aceita que ele leia e mude com o seu sim.</p></div>
     <div class="card"><h3>📒 Tudo anotado</h3><p>Cada pedido, proposta, sim, recusa e resultado fica num arquivo de registro que só você lê no servidor. Além dele, o próprio servidor guarda o registro do bot (as linhas que ele escreve enquanto roda), onde aparece quem tentou falar com ele.</p></div>
-    <div class="card"><h3>🌎 Na sua língua</h3><p>O bot responde na língua em que você escreve. Só as frases fixas ficam em português: "Confirma? (sim/não)" e "Este bot é privado.". Para confirmar valem "sim", "sí" ou "yes".</p></div>
+    <div class="card"><h3>🌎 Na sua língua</h3><p>As respostas da IA vêm na língua em que você escreve. As mensagens fixas do bot são em português: "Este bot é privado.", "Pronto. Peça o que quiser…" (resposta ao /start), "Vou fazer:", "Comandos:", "Confirma? (sim/não)", "Feito:", "Cancelado. Nada foi mudado.", "Esse pedido expirou…", "Isso eu não faço por aqui…" e "Deu erro:". Para confirmar valem "sim", "sí" ou "yes".</p></div>
     <div class="card"><h3>🧱 Não herda nada da máquina</h3><p>Se você já liberou comandos para o Claude Code no servidor, o bot ignora: só valem as travas dele.</p></div>
   </div>
   <div class="card" style="margin-top:16px"><h3>⚠️ O que isto não promete</h3><p>Não faz o Claude acertar tudo: ele pode errar a resposta. O que fica garantido é que ele não muda nada sem passar pela proposta e pelo seu "sim". E o bot cuida da pasta de trabalho, não do servidor inteiro: para mexer em sistema, banco de dados ou outros projetos, continue usando o terminal.</p></div>
@@ -263,7 +263,7 @@
   <h2>Peça para a sua IA <span class="amb">instalar o kit</span></h2>
   <p class="sub">Você não instala nada à mão. O Claude Code da sua VPS lê o projeto, confere o servidor e prepara tudo. Só o token do bot você cola você mesmo, num comando no terminal, fora da conversa: assim ele nunca passa pela IA.</p>
   <div class="grid g2">
-    <div class="card"><h3>0. Só tem o root?</h3><p>Entre na VPS como root, abra o Claude Code (se ainda não tiver, instale pela <a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">página oficial</a>, em inglês: é colar um comando) e cole o pedido abaixo. Ele cria o seu usuário comum, liga a opção que mantém o bot no ar quando você sai e te diz como entrar com o usuário novo.</p></div>
+    <div class="card"><h3>0. Só tem o root?</h3><p>Entre na VPS como root, abra o Claude Code (se ainda não tiver, instale pela <a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">página oficial</a>, em inglês: é colar um comando) e cole o pedido abaixo. Ele cria o seu usuário comum, liga a opção que mantém o bot no ar quando você sai e te diz como entrar com o usuário novo. Nesse usuário, o Claude Code é instalado e logado mais uma vez (só dessa vez).</p></div>
     <div class="card"><h3>1. Crie o seu bot</h3><p>No Telegram, fale com o <strong>@BotFather</strong>, mande /newbot, escolha um nome e um usuário terminado em "bot". Ele te dá um token (uma senha longa do bot). Guarde.</p></div>
     <div class="card"><h3>2. Cole o pedido no Claude Code da VPS</h3><p>Com o seu usuário comum, abra o Claude Code e cole o pedido abaixo. Ele explica o plano e espera o seu "sim". A instalação leva de 2 a 5 minutos e usa algumas chamadas curtas da sua assinatura do Claude, para testar as travas.</p></div>
     <div class="card"><h3>3. Diga que você é o dono</h3><p>No fim, você manda /start ao bot e a IA te ajuda a achar o seu número do Telegram no registro do bot e a gravar você como dono. Pronto: peça pelo celular.</p></div>
@@ -273,7 +273,7 @@
 Depois confira esta VPS e me responda em português simples:
 1. Estou como root ou num usuário comum? Tenho o Python 3.10 ou mais novo?
 2. O que falta, e o plano para instalar o kit.
-Se eu estiver como root: o kit não roda como root. Proponha criar um usuário comum para mim, ligar o linger dele (loginctl enable-linger, para o bot continuar no ar quando eu sair), copiar a minha chave de acesso SSH para ele e me dizer como entrar direto com esse usuário por SSH (su - não serve). Já nesse usuário, me ajude a instalar e logar o Claude Code na minha assinatura e continue a instalação dali.
+Se eu estiver como root: o kit não roda como root. Proponha criar um usuário comum para mim, ligar o linger dele (loginctl enable-linger, para o bot continuar no ar quando eu sair), copiar a minha chave de acesso SSH para ele e me dizer como entrar direto com esse usuário por SSH (entrar direto com o usuário novo, não trocar de usuário dentro da sessão do root). Se hoje eu entro só com senha, me ajude a entrar no usuário novo do jeito mais seguro. Já nesse usuário, me ajude a instalar e logar o Claude Code na minha assinatura e continue a instalação dali.
 Não faça nada antes do meu sim. NUNCA me peça o token do bot aqui no chat: quando chegar a hora, me diga o comando exato para eu rodar no terminal, onde eu colo o token sem aparecer.
 Confira também se o linger está ligado; sem ele o bot cai quando eu sair do servidor.
 Depois que eu rodar, me ajude a achar o meu ID do Telegram no registro do bot e a gravar como dono.</pre>
@@ -287,9 +287,9 @@ Depois que eu rodar, me ajude a achar o meu ID do Telegram no registro do bot e 
   <span class="chip">A prova</span>
   <h2>Testado antes de <span class="amb">chegar a você</span></h2>
   <div class="grid g3">
-    <div class="card"><h3 class="num">50 de 50</h3><p>Testes das travas passando numa VPS com Ubuntu 24.04. O instalador roda todos eles antes de ligar o bot; se um falhar, ele para.</p></div>
+    <div class="card"><h3 class="num">52 de 52</h3><p>Testes das travas passando numa VPS com Ubuntu 24.04; 8 deles chamam o Claude de verdade. O instalador roda todos eles antes de ligar o bot; se um falhar, ele para.</p></div>
     <div class="card"><h3 class="num">18 recusas</h3><p>Comandos e atalhos perigosos que o bot recusa: apagar fora da pasta, encadear comandos, usar administrador, curinga, link que leva para fora, entre outros.</p></div>
-    <div class="card"><h3 class="num">18 confirmações</h3><p>Jeitos de responder conferidos um a um: "sim", "sí" e "sim, pode apagar" confirmam; "sim, não apaga", "sí, pero antes" e "ok?" não.</p></div>
+    <div class="card"><h3 class="num">20 confirmações</h3><p>Jeitos de responder conferidos um a um: "sim", "sí" e "sim, pode apagar" confirmam; "sim, não apaga", "sí, pero antes" e "ok?" não.</p></div>
   </div>
   <div class="card" style="margin-top:16px"><h3>🧪 O instalador, de ponta a ponta</h3><p>Rodamos o instalador numa pasta nova da VPS de teste, com um Telegram de mentira: os testes passaram, o serviço subiu, um estranho mandou /start e foi recusado e anotado, o dono foi gravado, e a pergunta "quanto espaço livre tem no disco?" voltou com a resposta certa. Rodar de novo atualizou o bot sem perder o token.</p></div>
   <div class="card" style="margin-top:16px"><h3>🔍 Furos achados e fechados</h3><p>Revisores independentes leram o código como quem quer quebrar. Cada rodada achou um furo diferente, e todos foram fechados com teste: a IA herdava permissões do servidor, conseguia ler fora da pasta (inclusive por um atalho de arquivo), "sim, não apaga" contava como sim. A lista está no repositório.</p></div>
@@ -312,7 +312,7 @@ Depois que eu rodar, me ajude a achar o meu ID do Telegram no registro do bot e 
 
 <footer>
   <div class="wrap">
-    <div class="pill">Telegram</div><div class="pill">Claude Code</div><div class="pill">Python 3</div><div class="pill">systemd</div>
+    <div class="pill">Telegram</div><div class="pill">Claude Code</div><div class="pill">Python 3</div>
     <p style="margin-top:18px">Telegram VPS remoto · grátis no inema.club, direto na internet ·
       <a href="https://github.com/inematds/telegram-vps-remoto">inematds/telegram-vps-remoto</a> ·
       <a href="https://inema.club">INEMA.CLUB</a></p>

@@ -172,8 +172,10 @@ def eh_sim(texto):
     palavras = re.sub(r"[^\wáéíóúãõç ]", "", texto.lower()).split()
     if not palavras:
         return False
+    if any(w in ("no", "not") for w in (palavras[0], palavras[1:2] and palavras[1], palavras[-1])):
+        return False   # "no" só cancela no começo: em português "no" também é "em + o" ("sim, apaga o que está no log")
     if any(w in palavras for w in ("mas", "pero", "but", "antes", "primeiro", "depois", "espera",
-                                   "não", "nao", "no", "not", "cancela", "cancelar", "nunca", "pare", "para")):
+                                   "não", "nao", "cancela", "cancelar", "nunca", "pare", "para")):
         return False   # "sim, mas antes faz backup" não é um sim limpo: cancela e pede de novo
     return palavras[0] in SIM_FORTE or (len(palavras) == 1 and palavras[0] in SIM_SOZINHO)
 
