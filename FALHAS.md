@@ -1,0 +1,9 @@
+# FALHAS — telegram-vps-remoto
+
+| data | o que quebrou | menor correção | prompt \| infra |
+|---|---|---|---|
+| 2026-11-20 | `eh_sim` aceitava "sim, não apaga", "s não", "yes no", "sim, cancela" (só olhava a 1ª palavra) → o rm pendente rodaria (achado pelo revisor 5) | frase com negação (não/nao/no/not/cancela/nunca/pare/para) nunca confirma + 4 casos na suíte (VPS6 44 PASSOU) | prompt |
+| 2026-11-20 | `Bash(du:*)` liberado na leitura: `du --files0-from=<arquivo>` mostra o conteúdo de qualquer arquivo no erro (achado pelo revisor 2 do passo a passo) | tirar `du` de LEITURA (só df/ls/free/uptime fora da área) + teste com isca pelo du (VPS6 TUDO OK) | prompt |
+| 2026-11-20 | Leitura da IA sem limite de caminho: LEITURA liberava "Read"/"Glob"/"Grep" inteiros, a IA podia ler ~/.aws, ~/.git-credentials, .bash_history, outros projetos (achado pelo revisor do passo a passo); "sim, mas antes faz backup" confirmava | `Read(./**)`/`Glob(./**)`/`Grep(./**)` + mais negados; eh_sim recusa mas/antes/primeiro/depois/espera; teste com isca fora da área (VPS6 TUDO OK) | prompt |
+| 2026-11-20 | `claude -p` do bot somava as regras "allow" do ~/.claude/settings.json (ex.: Bash(rm:*)) ao --allowedTools: com "apague agora com rm -r" a IA apagava sem o sim (achado pelo validador do passo a passo; VPS6 só passou porque lá o settings é vazio) | `--setting-sources "" --strict-mcp-config` na chamada + teste com settings armadilha na área (VPS6 TUDO OK) | infra (config da máquina vaza para o bot) |
+| 2026-11-20 | Validador pulava toda opção com "-": `cp --target-directory=/x`, `tar -C/x`, `mv -t/x` saíam da área; "pode listar antes?" e "faz um backup primeiro" confirmavam o rm pendente | lista OPCOES_OK por comando; `eh_sim()` (sim em frase, "pode/ok/faz" só sozinho, "?" nunca); `tar -x` lista o pacote antes; teste com área/auditoria próprias (35/35 na VPS6) | prompt (código gerado sem caso de ataque) |

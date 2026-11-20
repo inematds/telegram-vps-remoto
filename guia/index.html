@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sua VPS no celular: a IA lê, você diz sim — Telegram VPS remoto</title>
+<meta name="description" content="Kit pronto: um bot de Telegram que passa os seus pedidos ao Claude Code, pela assinatura, na sua VPS. Só você fala com ele, a IA só lê, e qualquer mudança espera o seu sim. 45 testes das travas.">
+<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/telegram-vps-remoto/guia/">
+<link rel="alternate" hreflang="en" href="https://inematds.github.io/telegram-vps-remoto/guia/en/">
+<link rel="alternate" hreflang="es" href="https://inematds.github.io/telegram-vps-remoto/guia/es/">
+<link rel="alternate" hreflang="x-default" href="https://inematds.github.io/telegram-vps-remoto/guia/">
+<link rel="canonical" href="https://inematds.github.io/telegram-vps-remoto/guia/">
+<meta property="og:title" content="Sua VPS no celular — a IA lê, você diz sim">
+<meta property="og:description" content="Kit pronto: bot de Telegram + Claude Code pela assinatura, com travas no código.">
+<meta property="og:image" content="https://inematds.github.io/telegram-vps-remoto/guia/assets/banner.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#FACC15; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    --fill:#FACC15; --tint:rgba(250,204,21,.12); --ok:#7CE0C6; --bad:#F0918A;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#a16207; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    --fill:#FACC15; --tint:#FEF9C3; --ok:#0E6B55; --bad:#A83426;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  body.light pre .k{color:#f0c070}
+  body.light nav{background:rgba(246,247,249,.85)}
+  body.light .amb{color:var(--txt);background:linear-gradient(transparent 55%,#FACC15 55%)}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  body.light main a:not(.btn),body.light footer a{color:#854d0e;text-decoration:underline;text-decoration-color:#FACC15;text-decoration-thickness:3px}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  p code,li code,td code{font-size:.9em;background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:.05em .35em}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb);white-space:nowrap}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:var(--tint)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--fill);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  nav .links a.sec{white-space:nowrap}
+  @media(max-width:1360px){nav .links a.opt{display:none}}
+  @media(max-width:860px){nav .links a.sec{display:none}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(250,204,21,.18),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.1rem,4.6vw,3.3rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.15rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:44ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:66ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;min-width:0}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.95rem;margin:0}
+  .card p+p{margin-top:.6em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0;margin:.4em 0 0}
+  pre .c{color:#7d7d8a} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:28px}
+  .step>div{min-width:0}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--fill);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .5em}
+  .quem{display:inline-block;font-family:Sora;font-size:.75rem;letter-spacing:.06em;color:var(--txt);background:var(--tint);border:1px solid var(--line);border-radius:999px;padding:.1em .7em;margin-left:.5em;vertical-align:middle;font-weight:600}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:4px}
+  /* números */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+  @media(max-width:720px){.stats{grid-template-columns:1fr}}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .stat b{display:block;font:800 clamp(1.9rem,4vw,2.6rem)/1.05 Sora,sans-serif;letter-spacing:-.02em;color:var(--amb)}
+  body.light .stat b{color:var(--txt)}
+  .stat span{display:block;color:var(--mut);font-size:.93rem;margin-top:.5em}
+  .fonte{font-size:.86rem;color:var(--mut);margin-top:14px;max-width:80ch}
+  /* trocas */
+  .troca{display:grid;grid-template-columns:64px minmax(0,1fr);gap:18px;padding:26px 0;border-top:1px solid var(--line)}
+  .troca:first-of-type{border-top:none}
+  .troca .n{width:64px;height:64px;border-radius:14px;border:1px solid var(--line);background:var(--card);display:flex;align-items:center;justify-content:center;font:800 1.6rem Sora,sans-serif;color:var(--amb)}
+  body.light .troca .n{color:var(--txt);background:var(--fill);border-color:var(--fill)}
+  .troca h3{font-size:1.3rem;margin-bottom:.35em}
+  .troca p{margin:.35em 0;max-width:72ch}
+  .troca .ex{margin-top:.8em;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--fill);border-radius:10px;padding:12px 16px;font-size:.95rem;color:var(--mut);max-width:76ch}
+  .troca .ex b{color:var(--txt)}
+  @media(max-width:540px){.troca{grid-template-columns:1fr}}
+  /* três finais */
+  .vs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px;max-width:900px}
+  @media(max-width:720px){.vs{grid-template-columns:1fr}}
+  .vs div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:.93rem}
+  .vs strong{display:block;font-family:Sora;margin-bottom:.25em}
+  .vs .r{display:block;margin-top:.5em;font-weight:600}
+  .vs .r.bad{color:var(--bad)} .vs .r.ok{color:var(--ok)}
+  .card ul{margin:8px 0 0;padding-left:20px}.card li{margin:5px 0}
+  /* prova */
+  .prova{background:var(--card);border:1px solid var(--amb);border-radius:16px;padding:26px 26px 22px;margin-top:6px}
+  body.light .prova{border-color:#EAB308}
+  .tl{list-style:none;margin:0;padding:0;counter-reset:t}
+  .tl li{position:relative;padding:0 0 18px 48px;counter-increment:t}
+  .tl li::before{content:counter(t);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:10px;background:var(--fill);color:#1a1206;font:800 .95rem/32px Sora,sans-serif;text-align:center}
+  .tl li::after{content:"";position:absolute;left:15px;top:36px;bottom:4px;width:2px;background:var(--line)}
+  .tl li:last-child::after{display:none}
+  .tl b{font-family:Sora}
+  blockquote{margin:6px 0 0;padding:14px 18px;border-left:3px solid var(--fill);background:var(--bg2);border-radius:0 10px 10px 0;font-size:1.02rem}
+  .prova .rod{font-size:.86rem;color:var(--mut);margin-top:14px}
+  /* parte técnica */
+  .techhead{background:var(--bg2);border-top:3px solid var(--fill);padding:58px 0 8px}
+  .techhead h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em;margin:.3em 0 0}
+  .techhead .sub{color:var(--mut);margin:.6em 0 1.2em;max-width:66ch}
+  .techzone{background:var(--bg2)}
+  .techzone .card{background:var(--card)}
+  .tbl{width:100%;border-collapse:collapse;font-size:.93rem}
+  .tbl th,.tbl td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  .tbl th{font-family:Sora;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+  .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+  @media(max-width:600px){.tbl thead{display:none} .tbl tr{display:block;border-bottom:1px solid var(--line);padding:6px 0} .tbl tr:last-child{border-bottom:none} .tbl td{display:block;border:none;padding:4px 14px}}
+  .cer{border-top:3px solid var(--fill)}
+  .cer .tag{display:inline-block;font-family:Sora;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-bottom:.4em}
+  .cer .num{font:800 1.6rem/1.1 Sora,sans-serif;color:var(--amb);margin:.35em 0 .1em}
+  body.light .cer .num{color:var(--txt)}
+  .tbl td b{font-family:Sora}
+  @media(max-width:600px){.tbl td[data-l]::before{content:attr(data-l) ": ";color:var(--mut);font-family:Sora;font-size:.82rem}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top"><span class="emoji">📲</span> Telegram VPS remoto</a>
+  <span class="sep">|</span>
+  <span class="clubpro">
+    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <span class="sep">-</span>
+    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+  </span>
+  <div class="links">
+    <a class="sec" href="#explicado">O ganho</a>
+    <a class="sec" href="#dia">No seu dia</a>
+    <a class="sec opt" href="#como">Como funciona</a>
+    <a class="sec" href="#comecar">Como começar</a>
+    <a class="sec opt" href="#prova">A prova</a>
+    <span class="lang"><a class="on" href="./">PT</a><a href="en/">EN</a><a href="es/">ES</a></span>
+    <button class="tgl" id="themeToggle" aria-label="Alternar tema" title="Alternar tema">🌙</button>
+    <a class="btn" href="https://github.com/inematds/telegram-vps-remoto" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div>
+      <span class="chip">Kit pronto · Telegram VPS remoto · Claude Code pela assinatura</span>
+      <h1>Você pede pelo celular e a IA cuida da sua VPS, <span class="amb">mas nunca muda nada sem o seu sim</span></h1>
+      <p class="lead">Para saber se o disco está cheio ou apagar logs velhos, hoje você abre o notebook e entra no servidor. Dar à IA acesso livre resolve a pressa, mas e se ela apagar o que não devia? O <strong>Telegram VPS remoto</strong> é um bot de Telegram que passa o seu pedido ao Claude Code na sua VPS: ele investiga, responde no celular e, se precisar mudar algo, mostra o que vai fazer e espera o seu "sim". As travas estão no código, não num pedido educado à IA.</p>
+      <div class="cta">
+        <a class="btn" href="#explicado">O que você ganha</a>
+        <a class="btn ghost" href="#comecar">Como começar</a>
+      </div>
+    </div>
+    <figure><img src="assets/banner.jpg" alt="Telegram VPS remoto: sua VPS no celular, a IA lê e você diz sim"></figure>
+  </div>
+</header>
+
+<main>
+<section id="resumo" class="resumo"><div class="wrap">
+  <span class="chip">Em uma frase</span>
+  <p>É um <strong>kit pronto</strong> para você cuidar da sua <strong>VPS</strong> (um servidor alugado na internet, sempre ligado) pelo celular: um bot de <strong>Telegram</strong> que passa os seus pedidos para o <strong>Claude Code</strong> (o Claude em forma de programa que trabalha dentro do servidor), pela assinatura que você já paga. Só você fala com o bot, a IA só lê, e qualquer mudança espera o seu "sim". Um instalador faz tudo e roda 45 testes das travas antes de ligar o bot. Testado no Ubuntu 24.04.</p>
+  <figure style="margin:22px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="assets/banner-grade.jpg" alt="Telegram VPS remoto: só você fala, a IA só lê na pasta, proposta e Confirma, dizer não cancela, tudo anotado, 45 testes" loading="lazy" style="width:100%;display:block"></figure>
+  <div class="card" style="margin-top:22px;border-left:3px solid var(--fill)"><h3>✅ Serve para você se…</h3><ul>
+    <li>Você tem uma <strong>VPS com Linux</strong> (testamos no Ubuntu 24.04) e consegue entrar nela pelo terminal.</li>
+    <li>Você tem um <strong>plano pago do Claude</strong> e o Claude Code instalado e logado nessa VPS.</li>
+    <li>Você tem <strong>Telegram</strong> no celular.</li>
+  </ul>
+  <p><strong>Ainda não tem servidor ou quer entender a ideia antes?</strong> Comece pelo <a href="https://inematds.github.io/telegram-claude-jarvis/guia/" target="_blank" rel="noopener">guia do conceito</a>. <strong>Quer aprender a montar o mesmo bot etapa por etapa?</strong> Veja o <a href="https://inematds.github.io/telegram-vps-passo-a-passo/guia/" target="_blank" rel="noopener">passo a passo</a>. Este kit é o atalho: o bot já vem pronto.</p></div>
+</div></section>
+
+<section id="explicado"><div class="wrap">
+  <span class="chip">O ganho</span>
+  <h2>Antes e depois do <span class="amb">Telegram VPS remoto</span></h2>
+  <div class="grid g2">
+    <div class="card"><h3>😩 Sem isso</h3><p>Uma dúvida boba sobre o servidor vira tarefa: abrir o notebook, entrar, lembrar o comando, ler a saída.</p><p>E se você liga uma IA com acesso livre, fica a pergunta: ela vai apagar só o que eu pedi?</p></div>
+    <div class="card"><h3>😌 Com isso</h3><p>Você pergunta no Telegram, do jeito que fala, e recebe a resposta no celular.</p><p>Quando o pedido muda algo, chega a proposta com os comandos exatos e "Confirma?". Sem o seu "sim", nada muda.</p></div>
+  </div>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card"><h3>📱 De qualquer lugar</h3><p>Disco, memória, pastas, logs: pergunte do celular, sem abrir o notebook.</p></div>
+    <div class="card"><h3>💸 Sem custo a mais</h3><p>O bot usa o Claude Code pela sua assinatura. Não tem chave de API nem conta por uso.</p></div>
+    <div class="card"><h3>🔒 Travas no código</h3><p>Quem decide o que pode é o bot, não a IA. A IA nem tem como escrever: ela só lê e propõe.</p></div>
+  </div>
+</div></section>
+
+<section id="video" hidden>
+<!-- VIDEO: entra o explicavideo do projeto quando publicado (seção #video, 3 idiomas) -->
+</section>
+
+<section id="dia"><div class="wrap">
+  <span class="chip">No seu dia a dia</span>
+  <h2>Como isso muda o seu <span class="amb">dia</span></h2>
+  <p class="sub">Três situações comuns de quem tem uma VPS.</p>
+  <div class="grid g3">
+    <div class="card"><h3>💽 "Quanto espaço livre tem no disco?"</h3><p><strong>Hoje:</strong> abrir o notebook e entrar no servidor.</p><p><strong>Com o kit:</strong> você manda a pergunta e o bot responde no celular. No nosso teste: "Tem 131 GB livres de 193 GB. Está usando 63 GB (33%)."</p></div>
+    <div class="card"><h3>🧹 "Apaga a pasta de logs"</h3><p><strong>Hoje:</strong> ou você faz à mão, ou confia de olhos fechados.</p><p><strong>Com o kit:</strong> o bot mostra exatamente o que vai apagar e pergunta "Confirma?". Você diz "sim" e ele faz; diz "não" e nada muda.</p></div>
+    <div class="card"><h3>🙅 "Mostra o arquivo de senhas"</h3><p><strong>Hoje:</strong> uma IA com acesso livre poderia mostrar.</p><p><strong>Com o kit:</strong> o bot recusa. Chaves, senhas e arquivos fora da pasta de trabalho não saem, nem por caminho torto.</p></div>
+  </div>
+</div></section>
+
+<section id="como"><div class="wrap">
+  <span class="chip">Como funciona</span>
+  <h2>A IA olha. <span class="amb">Quem mexe é o bot, depois do seu sim.</span></h2>
+  <p class="sub">Pense num prédio: a IA é um consultor que pode olhar a sala de trabalho e sugerir; o bot é o porteiro com a lista de quem entra e do que pode ser feito; e só você assina a ordem.</p>
+  <div class="flow"><span>Você pede no Telegram</span><span class="arr">→</span><span>o bot confere se é você</span><span class="arr">→</span><span>a IA só lê e responde</span><span class="arr">→</span><span>se precisar mudar: proposta + "Confirma?"</span><span class="arr">→</span><span>"sim"</span><span class="arr">→</span><span>o bot executa e anota</span></div>
+  <div class="grid g2" style="margin-top:20px">
+    <div class="card"><h3>🚪 Só você fala</h3><p>O bot tem uma lista de donos. Quem não está nela recebe "Este bot é privado." e fica anotado. Lista vazia: ninguém entra.</p></div>
+    <div class="card"><h3>👀 A IA só lê, e só na sala de trabalho</h3><p>Ela pode ler o que está na pasta de trabalho do bot. Do resto do servidor, só vê espaço em disco e nomes de pastas e arquivos, nunca o conteúdo. Chaves, senhas e logins ficam fora.</p></div>
+    <div class="card"><h3>✍️ Mudança vira proposta</h3><p>Pedido que apaga, move ou cria algo volta como proposta: o que vai mudar e os comandos exatos. Quem executa, depois do seu "sim", é o bot, só uma lista curta de comandos simples, só dentro da pasta de trabalho.</p></div>
+    <div class="card"><h3>🛑 "Não" cancela de verdade</h3><p>"sim" e "sim, pode apagar" confirmam. "sim, não apaga", "sim, mas antes…" ou "pode listar antes?" não confirmam. E o pedido vale só 10 minutos.</p></div>
+    <div class="card"><h3>📒 Tudo anotado</h3><p>Cada pedido, proposta, sim, recusa e resultado fica num registro que só você lê no servidor.</p></div>
+    <div class="card"><h3>🧱 Não herda nada da máquina</h3><p>Se você já liberou comandos para o Claude Code no servidor, o bot ignora: só valem as travas dele.</p></div>
+  </div>
+  <div class="card" style="margin-top:16px"><h3>⚠️ O que isto não promete</h3><p>Não faz o Claude acertar tudo: ele pode errar a resposta. O que fica garantido é que ele não muda nada sem passar pela proposta e pelo seu "sim". E o bot cuida da pasta de trabalho, não do servidor inteiro: para mexer em sistema, banco de dados ou outros projetos, continue usando o terminal.</p></div>
+</div></section>
+
+<section id="comecar"><div class="wrap">
+  <span class="chip">Como começar</span>
+  <h2>Peça para a sua IA <span class="amb">instalar o kit</span></h2>
+  <p class="sub">Você não instala nada à mão. O Claude Code da sua VPS lê o projeto, confere o servidor e prepara tudo. Só o token do bot você cola você mesmo, para ele nunca passar pela IA.</p>
+  <div class="grid g3">
+    <div class="card"><h3>1. Crie o seu bot</h3><p>No Telegram, fale com o <strong>@BotFather</strong>, mande /newbot, escolha um nome e um usuário terminado em "bot". Ele te dá um token (uma senha longa do bot). Guarde.</p></div>
+    <div class="card"><h3>2. Cole o pedido no Claude Code da VPS</h3><p>Entre na VPS com o seu usuário (não o root), abra o Claude Code e cole o pedido abaixo. Ele explica o plano e espera o seu "sim".</p></div>
+    <div class="card"><h3>3. Diga que você é o dono</h3><p>No fim, você manda /start ao bot e a IA te ajuda a achar o seu número do Telegram e gravar você como dono. Pronto: peça pelo celular.</p></div>
+  </div>
+  <div class="pedido" style="margin-top:20px;position:relative">
+<pre id="pedidoTxt" style="white-space:pre-wrap">Leia o projeto "Telegram VPS remoto" em https://github.com/inematds/telegram-vps-remoto (o README explica a instalação).
+Depois confira esta VPS e me responda em português simples:
+1. Estou num usuário comum (não root)? Tenho o Python 3.10 ou mais novo e você (Claude Code) logado na assinatura?
+2. O que falta, e o plano para instalar o kit.
+Não instale nada antes do meu sim. NUNCA me peça o token do bot aqui no chat: quando chegar a hora, me diga o comando exato para eu rodar no terminal, onde eu colo o token sem aparecer.
+Depois que eu rodar, me ajude a achar o meu ID do Telegram no registro do bot e a gravar como dono.</pre>
+    <button class="btn" id="copiarPedido" style="margin-top:10px">Copiar o pedido</button>
+  </div>
+  <div class="card" style="margin-top:16px"><h3>🛠️ É técnico e prefere instalar à mão?</h3><p>Os comandos, os arquivos e os testes estão no README do GitHub.</p><p><a class="btn ghost" href="https://github.com/inematds/telegram-vps-remoto#instalação-técnica" target="_blank" rel="noopener">Ver a instalação técnica</a></p></div>
+  <p class="mut" style="margin-top:16px">Quer ir além? O <a href="https://inematds.github.io/jarvis-na-pratica/guia/" target="_blank" rel="noopener">Jarvis na prática</a> mostra um assistente com memória e cérebro trocável (Claude, Codex ou OpenRouter), com a mesma ideia de pedir o seu sim antes de apagar.</p>
+</div></section>
+
+<section id="prova"><div class="wrap">
+  <span class="chip">A prova</span>
+  <h2>Testado antes de <span class="amb">chegar a você</span></h2>
+  <div class="grid g3">
+    <div class="card"><h3 class="num">45 de 45</h3><p>Testes das travas passando numa VPS com Ubuntu 24.04. O instalador roda todos eles antes de ligar o bot; se um falhar, ele para.</p></div>
+    <div class="card"><h3 class="num">18 recusas</h3><p>Comandos e atalhos perigosos que o bot recusa: apagar fora da pasta, encadear comandos, usar administrador, curinga, link que leva para fora, entre outros.</p></div>
+    <div class="card"><h3 class="num">14 confirmações</h3><p>Jeitos de responder conferidos um a um: "sim" e "sim, pode apagar" confirmam; "sim, não apaga" e "ok?" não.</p></div>
+  </div>
+  <div class="card" style="margin-top:16px"><h3>🧪 O instalador, de ponta a ponta</h3><p>Rodamos o instalador numa pasta nova da VPS de teste, com um Telegram de mentira: os 45 testes passaram, o serviço subiu, um estranho mandou /start e foi recusado e anotado, o dono foi gravado, e a pergunta "quanto espaço livre tem no disco?" voltou com a resposta certa. Rodar de novo atualizou o bot sem perder o token.</p></div>
+  <div class="card" style="margin-top:16px"><h3>🔍 Furos achados e fechados</h3><p>Revisores independentes leram o código como quem quer quebrar. Cada rodada achou um furo diferente, e todos foram fechados com teste: a IA herdava permissões do servidor, conseguia ler fora da pasta, "sim, não apaga" contava como sim. A lista está no repositório.</p></div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <span class="chip">Perguntas comuns</span>
+  <h2>Antes de <span class="amb">começar</span></h2>
+  <div class="grid g2">
+    <div class="card"><h3>Preciso programar?</h3><p>Não. A sua IA instala; você só cria o bot no Telegram, cola o token quando ela pedir e diz "sim".</p></div>
+    <div class="card"><h3>Custa alguma coisa?</h3><p>O kit é grátis. O bot usa o Claude Code pela sua assinatura do Claude; não tem chave de API nem cobrança por uso. A VPS você já paga.</p></div>
+    <div class="card"><h3>E se alguém achar o meu bot?</h3><p>Ele responde "Este bot é privado." a quem não é dono, e anota a tentativa. Ninguém fora da sua lista consegue pedir nada.</p></div>
+    <div class="card"><h3>Ele mexe em qualquer coisa do servidor?</h3><p>Não. Lê e muda só dentro da pasta de trabalho dele, e só depois do seu "sim". O resto do servidor ele só vê por fora (espaço em disco, nomes).</p></div>
+    <div class="card"><h3>Funciona no Windows ou no Mac?</h3><p>O kit é para servidor Linux; testamos no Ubuntu 24.04. Você usa o celular para falar com ele.</p></div>
+    <div class="card"><h3>Qual a diferença para o passo a passo?</h3><p>O <a href="https://inematds.github.io/telegram-vps-passo-a-passo/guia/" target="_blank" rel="noopener">passo a passo</a> ensina a construir o mesmo bot etapa por etapa. Este kit entrega pronto, com instalador.</p></div>
+  </div>
+  <p class="sub" style="margin-top:22px;text-align:center"><strong>Grátis no inema.club, direto na internet.</strong> E você, o que pediria primeiro para a sua VPS pelo celular?</p>
+</div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="pill">Telegram</div><div class="pill">Claude Code</div><div class="pill">Python 3</div><div class="pill">systemd</div>
+    <p style="margin-top:18px">Telegram VPS remoto · grátis no inema.club, direto na internet ·
+      <a href="https://github.com/inematds/telegram-vps-remoto">inematds/telegram-vps-remoto</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var KEY='telegram-vps-remoto-theme';
+    var b=document.body, t=document.getElementById('themeToggle');
+    try{ if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; } }catch(e){}
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      try{ localStorage.setItem(KEY, light?'light':'dark'); }catch(e){}
+    });
+  })();
+  (function(){
+    var bt=document.getElementById('copiarPedido'), tx=document.getElementById('pedidoTxt');
+    if(!bt||!tx) return;
+    var orig=bt.textContent;
+    bt.addEventListener('click',function(){
+      try{ navigator.clipboard.writeText(tx.textContent).then(function(){ bt.textContent='Copiado ✓'; setTimeout(function(){bt.textContent=orig;},2000); }); }catch(e){}
+    });
+  })();
+</script>
+</body>
+</html>

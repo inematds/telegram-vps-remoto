@@ -1,0 +1,7 @@
+.env
+area/
+auditoria.jsonl
+__pycache__/
+*.pyc
+testes/ultimo-resultado.txt
+guia/assets/*.codex.log
