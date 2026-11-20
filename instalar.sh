@@ -102,7 +102,7 @@ chmod 600 "$DESTINO/.env"
 
 passo "4/6 Testes das travas"
 if [ "${PULAR_TESTES:-0}" = "1" ]; then aviso "Pulados (PULAR_TESTES=1)"; else
-  echo "  Rodando a suíte (usa umas 7 chamadas curtas do Claude Code; leva 2 a 5 minutos)…"
+  echo "  Rodando a suíte (usa umas 8 chamadas curtas do Claude Code; leva 2 a 5 minutos)…"
   if (cd "$DESTINO" && timeout 900 python3 testes/testar_travas.py > testes/ultimo-resultado.txt 2>&1); then
     ok "$(grep -c '^PASSOU' "$DESTINO/testes/ultimo-resultado.txt") testes PASSOU — TUDO OK"
   else

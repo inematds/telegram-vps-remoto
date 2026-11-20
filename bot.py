@@ -62,13 +62,13 @@ OPCOES_OK = {  # só opções sem valor; qualquer outra (inclusive -C, -t, --dir
     "mkdir": {"-p", "-v"}, "rmdir": {"-v"}, "touch": set(), "gzip": {"-k", "-v", "-9"}, "gunzip": {"-k", "-v"},
     "tar": {"-czf", "-cf", "-cjf", "-xzf", "-xf", "-xjf", "-tf", "-tzf", "-v"},
 }
-SIM_FORTE = {"sim", "s", "confirmo", "confirma", "yes"}   # vale mesmo em frase: "sim, pode apagar"
+SIM_FORTE = {"sim", "s", "confirmo", "confirma", "yes", "y", "confirm", "si", "sí", "confirmar"}   # vale mesmo em frase: "sim, pode apagar"
 SIM_SOZINHO = {"pode", "ok", "manda", "faz"}              # só vale como a mensagem inteira
 
 ESQUEMA = json.dumps({
     "type": "object",
     "properties": {
-        "resposta": {"type": "string", "description": "o que você descobriu, em português simples, curto"},
+        "resposta": {"type": "string", "description": "o que você descobriu, em linguagem simples, curto, na língua do dono"},
         "acao": {"type": ["object", "null"], "properties": {
             "descricao": {"type": "string", "description": "o que vai mudar, em uma frase"},
             "passos": {"type": "string", "description": "comandos exatos que serão rodados"}},
@@ -84,7 +84,7 @@ REGRAS_LEITURA = (
     "com caminhos relativos à pasta de trabalho; nada de |, ;, $, crase, ~ ou '..'. "
     "Sem curingas (* ? [): cite cada arquivo pelo nome, porque o bot executa os comandos sem shell. "
     "Se não precisar mudar nada, 'acao' = null. Nunca mostre chaves, senhas, tokens ou arquivos .env. "
-    "Resposta curta, para celular."
+    "Resposta curta, para celular, na mesma língua em que o dono escreveu."
 )
 
 
@@ -172,7 +172,7 @@ def eh_sim(texto):
     palavras = re.sub(r"[^\wáéíóúãõç ]", "", texto.lower()).split()
     if not palavras:
         return False
-    if any(w in palavras for w in ("mas", "antes", "primeiro", "depois", "espera",
+    if any(w in palavras for w in ("mas", "pero", "but", "antes", "primeiro", "depois", "espera",
                                    "não", "nao", "no", "not", "cancela", "cancelar", "nunca", "pare", "para")):
         return False   # "sim, mas antes faz backup" não é um sim limpo: cancela e pede de novo
     return palavras[0] in SIM_FORTE or (len(palavras) == 1 and palavras[0] in SIM_SOZINHO)

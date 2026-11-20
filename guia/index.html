@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sua VPS no celular: a IA lê, você diz sim — Telegram VPS remoto</title>
-<meta name="description" content="Kit pronto: um bot de Telegram que passa os seus pedidos ao Claude Code, pela assinatura, na sua VPS. Só você fala com ele, a IA só lê, e qualquer mudança espera o seu sim. 45 testes das travas.">
+<meta name="description" content="Kit pronto: um bot de Telegram que passa os seus pedidos ao Claude Code, pela assinatura, na sua VPS. Só você fala com ele, a IA só lê, e qualquer mudança espera o seu sim. 50 testes das travas.">
 <link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/telegram-vps-remoto/guia/">
 <link rel="alternate" hreflang="en" href="https://inematds.github.io/telegram-vps-remoto/guia/en/">
 <link rel="alternate" hreflang="es" href="https://inematds.github.io/telegram-vps-remoto/guia/es/">
@@ -187,7 +187,7 @@
     <div>
       <span class="chip">Kit pronto · Telegram VPS remoto · Claude Code pela assinatura</span>
       <h1>Você pede pelo celular e a IA cuida da sua VPS, <span class="amb">mas nunca muda nada sem o seu sim</span></h1>
-      <p class="lead">Para saber se o disco está cheio ou apagar logs velhos, hoje você abre o notebook e entra no servidor. Dar à IA acesso livre resolve a pressa, mas e se ela apagar o que não devia? O <strong>Telegram VPS remoto</strong> é um bot de Telegram que passa o seu pedido ao Claude Code na sua VPS: ele investiga, responde no celular e, se precisar mudar algo, mostra o que vai fazer e espera o seu "sim". As travas estão no código, não num pedido educado à IA.</p>
+      <p class="lead">Para saber se o disco está cheio, quanta memória sobra ou há quanto tempo o servidor está ligado, hoje você abre o notebook e entra no servidor. Dar à IA acesso livre resolve a pressa, mas e se ela apagar o que não devia? O <strong>Telegram VPS remoto</strong> é um bot de Telegram que passa o seu pedido ao Claude Code na sua VPS: ele investiga, responde no celular e, se precisar mudar algo, mostra o que vai fazer e espera o seu "sim". As travas estão no código, não num pedido educado à IA.</p>
       <div class="cta">
         <a class="btn" href="#explicado">O que você ganha</a>
         <a class="btn ghost" href="#comecar">Como começar</a>
@@ -200,13 +200,14 @@
 <main>
 <section id="resumo" class="resumo"><div class="wrap">
   <span class="chip">Em uma frase</span>
-  <p>É um <strong>kit pronto</strong> para você cuidar da sua <strong>VPS</strong> (um servidor alugado na internet, sempre ligado) pelo celular: um bot de <strong>Telegram</strong> que passa os seus pedidos para o <strong>Claude Code</strong> (o Claude em forma de programa que trabalha dentro do servidor), pela assinatura que você já paga. Só você fala com o bot, a IA só lê, e qualquer mudança espera o seu "sim". Um instalador faz tudo e roda 45 testes das travas antes de ligar o bot. Testado no Ubuntu 24.04.</p>
-  <figure style="margin:22px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="assets/banner-grade.jpg" alt="Telegram VPS remoto: só você fala, a IA só lê na pasta, proposta e Confirma, dizer não cancela, tudo anotado, 45 testes" loading="lazy" style="width:100%;display:block"></figure>
+  <p>É um <strong>kit pronto</strong> para você cuidar da sua <strong>VPS</strong> (um servidor alugado na internet, sempre ligado) pelo celular: um bot de <strong>Telegram</strong> que passa os seus pedidos para o <strong>Claude Code</strong> (o Claude em forma de programa que trabalha dentro do servidor), pela assinatura que você já paga. Só você fala com o bot, a IA só lê, e qualquer mudança espera o seu "sim". Um instalador faz tudo e roda 50 testes das travas antes de ligar o bot. Testado no Ubuntu 24.04 (o Linux mais usado em servidor).</p>
+  <figure style="margin:22px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="assets/banner-grade.jpg" alt="Telegram VPS remoto: só você fala, a IA só lê na pasta, proposta e Confirma, dizer não cancela, tudo anotado, 50 testes" loading="lazy" style="width:100%;display:block"></figure>
   <div class="card" style="margin-top:22px;border-left:3px solid var(--fill)"><h3>✅ Serve para você se…</h3><ul>
     <li>Você tem uma <strong>VPS com Linux</strong> (testamos no Ubuntu 24.04) e consegue entrar nela pelo terminal.</li>
-    <li>Você tem um <strong>plano pago do Claude</strong> e o Claude Code instalado e logado nessa VPS.</li>
+    <li>Você tem um <strong>plano pago do Claude</strong>. Se o Claude Code ainda não está na VPS, a IA te ajuda a instalar.</li>
     <li>Você tem <strong>Telegram</strong> no celular.</li>
   </ul>
+  <p><strong>Você entra na VPS como root?</strong> Root é o administrador do servidor, que pode tudo. O bot não roda como root, de propósito: se algo der errado, o estrago fica limitado. O pedido pronto lá embaixo já pede à IA para criar um usuário comum para você, deixar o bot ligado mesmo quando você sai, e preparar o Claude Code nesse usuário. Depois você passa a entrar na VPS direto com ele.</p>
   <p><strong>Ainda não tem servidor ou quer entender a ideia antes?</strong> Comece pelo <a href="https://inematds.github.io/telegram-claude-jarvis/guia/" target="_blank" rel="noopener">guia do conceito</a>. <strong>Quer aprender a montar o mesmo bot etapa por etapa?</strong> Veja o <a href="https://inematds.github.io/telegram-vps-passo-a-passo/guia/" target="_blank" rel="noopener">passo a passo</a>. Este kit é o atalho: o bot já vem pronto.</p></div>
 </div></section>
 
@@ -218,7 +219,7 @@
     <div class="card"><h3>😌 Com isso</h3><p>Você pergunta no Telegram, do jeito que fala, e recebe a resposta no celular.</p><p>Quando o pedido muda algo, chega a proposta com os comandos exatos e "Confirma?". Sem o seu "sim", nada muda.</p></div>
   </div>
   <div class="grid g3" style="margin-top:16px">
-    <div class="card"><h3>📱 De qualquer lugar</h3><p>Disco, memória, pastas, logs: pergunte do celular, sem abrir o notebook.</p></div>
+    <div class="card"><h3>📱 De qualquer lugar</h3><p>Espaço em disco, memória livre, há quanto tempo está ligado, que pastas existem: pergunte do celular, sem abrir o notebook.</p></div>
     <div class="card"><h3>💸 Sem custo a mais</h3><p>O bot usa o Claude Code pela sua assinatura. Não tem chave de API nem conta por uso.</p></div>
     <div class="card"><h3>🔒 Travas no código</h3><p>Quem decide o que pode é o bot, não a IA. A IA nem tem como escrever: ela só lê e propõe.</p></div>
   </div>
@@ -234,7 +235,7 @@
   <p class="sub">Três situações comuns de quem tem uma VPS.</p>
   <div class="grid g3">
     <div class="card"><h3>💽 "Quanto espaço livre tem no disco?"</h3><p><strong>Hoje:</strong> abrir o notebook e entrar no servidor.</p><p><strong>Com o kit:</strong> você manda a pergunta e o bot responde no celular. No nosso teste: "Tem 131 GB livres de 193 GB. Está usando 63 GB (33%)."</p></div>
-    <div class="card"><h3>🧹 "Apaga a pasta de logs"</h3><p><strong>Hoje:</strong> ou você faz à mão, ou confia de olhos fechados.</p><p><strong>Com o kit:</strong> o bot mostra exatamente o que vai apagar e pergunta "Confirma?". Você diz "sim" e ele faz; diz "não" e nada muda.</p></div>
+    <div class="card"><h3>🗂️ "Apaga os arquivos de teste que pus na pasta"</h3><p><strong>Hoje:</strong> ou você faz à mão, ou confia de olhos fechados.</p><p><strong>Com o kit:</strong> nos arquivos que você colocou na pasta de trabalho, o bot mostra exatamente o que vai apagar (ou compactar, mover, organizar) e pergunta "Confirma?". Você diz "sim" e ele faz; diz "não" e nada muda.</p></div>
     <div class="card"><h3>🙅 "Mostra o arquivo de senhas"</h3><p><strong>Hoje:</strong> uma IA com acesso livre poderia mostrar.</p><p><strong>Com o kit:</strong> o bot recusa. Chaves, senhas e arquivos fora da pasta de trabalho não saem, nem por caminho torto.</p></div>
   </div>
 </div></section>
@@ -242,14 +243,16 @@
 <section id="como"><div class="wrap">
   <span class="chip">Como funciona</span>
   <h2>A IA olha. <span class="amb">Quem mexe é o bot, depois do seu sim.</span></h2>
-  <p class="sub">Pense num prédio: a IA é um consultor que pode olhar a sala de trabalho e sugerir; o bot é o porteiro com a lista de quem entra e do que pode ser feito; e só você assina a ordem.</p>
+  <p class="sub">Pense num prédio: a IA é um consultor que pode olhar a sala de trabalho (a pasta de trabalho do bot) e sugerir; o bot é o porteiro com a lista de quem entra e do que pode ser feito; e só você assina a ordem.</p>
   <div class="flow"><span>Você pede no Telegram</span><span class="arr">→</span><span>o bot confere se é você</span><span class="arr">→</span><span>a IA só lê e responde</span><span class="arr">→</span><span>se precisar mudar: proposta + "Confirma?"</span><span class="arr">→</span><span>"sim"</span><span class="arr">→</span><span>o bot executa e anota</span></div>
   <div class="grid g2" style="margin-top:20px">
     <div class="card"><h3>🚪 Só você fala</h3><p>O bot tem uma lista de donos. Quem não está nela recebe "Este bot é privado." e fica anotado. Lista vazia: ninguém entra.</p></div>
     <div class="card"><h3>👀 A IA só lê, e só na sala de trabalho</h3><p>Ela pode ler o que está na pasta de trabalho do bot. Do resto do servidor, só vê espaço em disco e nomes de pastas e arquivos, nunca o conteúdo. Chaves, senhas e logins ficam fora.</p></div>
     <div class="card"><h3>✍️ Mudança vira proposta</h3><p>Pedido que apaga, move ou cria algo volta como proposta: o que vai mudar e os comandos exatos. Quem executa, depois do seu "sim", é o bot, só uma lista curta de comandos simples, só dentro da pasta de trabalho.</p></div>
     <div class="card"><h3>🛑 "Não" cancela de verdade</h3><p>"sim" e "sim, pode apagar" confirmam. "sim, não apaga", "sim, mas antes…" ou "pode listar antes?" não confirmam. E o pedido vale só 10 minutos.</p></div>
-    <div class="card"><h3>📒 Tudo anotado</h3><p>Cada pedido, proposta, sim, recusa e resultado fica num registro que só você lê no servidor.</p></div>
+    <div class="card"><h3>📁 A pasta de trabalho</h3><p>É uma pasta só do bot, ao lado dele no servidor (<strong>area</strong>, dentro da pasta do kit), e começa vazia. Você coloca nela os arquivos que quer que ele leia ou organize. Dá para apontar para outra pasta numa linha de configuração, mas só aponte para uma pasta que você aceita que ele leia e mude com o seu sim.</p></div>
+    <div class="card"><h3>📒 Tudo anotado</h3><p>Cada pedido, proposta, sim, recusa e resultado fica num arquivo de registro que só você lê no servidor. Além dele, o próprio servidor guarda o registro do bot (as linhas que ele escreve enquanto roda), onde aparece quem tentou falar com ele.</p></div>
+    <div class="card"><h3>🌎 Na sua língua</h3><p>O bot responde na língua em que você escreve. Só as frases fixas ficam em português: "Confirma? (sim/não)" e "Este bot é privado.". Para confirmar valem "sim", "sí" ou "yes".</p></div>
     <div class="card"><h3>🧱 Não herda nada da máquina</h3><p>Se você já liberou comandos para o Claude Code no servidor, o bot ignora: só valem as travas dele.</p></div>
   </div>
   <div class="card" style="margin-top:16px"><h3>⚠️ O que isto não promete</h3><p>Não faz o Claude acertar tudo: ele pode errar a resposta. O que fica garantido é que ele não muda nada sem passar pela proposta e pelo seu "sim". E o bot cuida da pasta de trabalho, não do servidor inteiro: para mexer em sistema, banco de dados ou outros projetos, continue usando o terminal.</p></div>
@@ -258,18 +261,21 @@
 <section id="comecar"><div class="wrap">
   <span class="chip">Como começar</span>
   <h2>Peça para a sua IA <span class="amb">instalar o kit</span></h2>
-  <p class="sub">Você não instala nada à mão. O Claude Code da sua VPS lê o projeto, confere o servidor e prepara tudo. Só o token do bot você cola você mesmo, para ele nunca passar pela IA.</p>
-  <div class="grid g3">
+  <p class="sub">Você não instala nada à mão. O Claude Code da sua VPS lê o projeto, confere o servidor e prepara tudo. Só o token do bot você cola você mesmo, num comando no terminal, fora da conversa: assim ele nunca passa pela IA.</p>
+  <div class="grid g2">
+    <div class="card"><h3>0. Só tem o root?</h3><p>Entre na VPS como root, abra o Claude Code (se ainda não tiver, instale pela <a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">página oficial</a>, em inglês: é colar um comando) e cole o pedido abaixo. Ele cria o seu usuário comum, liga a opção que mantém o bot no ar quando você sai e te diz como entrar com o usuário novo.</p></div>
     <div class="card"><h3>1. Crie o seu bot</h3><p>No Telegram, fale com o <strong>@BotFather</strong>, mande /newbot, escolha um nome e um usuário terminado em "bot". Ele te dá um token (uma senha longa do bot). Guarde.</p></div>
-    <div class="card"><h3>2. Cole o pedido no Claude Code da VPS</h3><p>Entre na VPS com o seu usuário (não o root), abra o Claude Code e cole o pedido abaixo. Ele explica o plano e espera o seu "sim".</p></div>
-    <div class="card"><h3>3. Diga que você é o dono</h3><p>No fim, você manda /start ao bot e a IA te ajuda a achar o seu número do Telegram e gravar você como dono. Pronto: peça pelo celular.</p></div>
+    <div class="card"><h3>2. Cole o pedido no Claude Code da VPS</h3><p>Com o seu usuário comum, abra o Claude Code e cole o pedido abaixo. Ele explica o plano e espera o seu "sim". A instalação leva de 2 a 5 minutos e usa algumas chamadas curtas da sua assinatura do Claude, para testar as travas.</p></div>
+    <div class="card"><h3>3. Diga que você é o dono</h3><p>No fim, você manda /start ao bot e a IA te ajuda a achar o seu número do Telegram no registro do bot e a gravar você como dono. Pronto: peça pelo celular.</p></div>
   </div>
   <div class="pedido" style="margin-top:20px;position:relative">
 <pre id="pedidoTxt" style="white-space:pre-wrap">Leia o projeto "Telegram VPS remoto" em https://github.com/inematds/telegram-vps-remoto (o README explica a instalação).
 Depois confira esta VPS e me responda em português simples:
-1. Estou num usuário comum (não root)? Tenho o Python 3.10 ou mais novo e você (Claude Code) logado na assinatura?
+1. Estou como root ou num usuário comum? Tenho o Python 3.10 ou mais novo?
 2. O que falta, e o plano para instalar o kit.
-Não instale nada antes do meu sim. NUNCA me peça o token do bot aqui no chat: quando chegar a hora, me diga o comando exato para eu rodar no terminal, onde eu colo o token sem aparecer.
+Se eu estiver como root: o kit não roda como root. Proponha criar um usuário comum para mim, ligar o linger dele (loginctl enable-linger, para o bot continuar no ar quando eu sair), copiar a minha chave de acesso SSH para ele e me dizer como entrar direto com esse usuário por SSH (su - não serve). Já nesse usuário, me ajude a instalar e logar o Claude Code na minha assinatura e continue a instalação dali.
+Não faça nada antes do meu sim. NUNCA me peça o token do bot aqui no chat: quando chegar a hora, me diga o comando exato para eu rodar no terminal, onde eu colo o token sem aparecer.
+Confira também se o linger está ligado; sem ele o bot cai quando eu sair do servidor.
 Depois que eu rodar, me ajude a achar o meu ID do Telegram no registro do bot e a gravar como dono.</pre>
     <button class="btn" id="copiarPedido" style="margin-top:10px">Copiar o pedido</button>
   </div>
@@ -281,12 +287,12 @@ Depois que eu rodar, me ajude a achar o meu ID do Telegram no registro do bot e 
   <span class="chip">A prova</span>
   <h2>Testado antes de <span class="amb">chegar a você</span></h2>
   <div class="grid g3">
-    <div class="card"><h3 class="num">45 de 45</h3><p>Testes das travas passando numa VPS com Ubuntu 24.04. O instalador roda todos eles antes de ligar o bot; se um falhar, ele para.</p></div>
+    <div class="card"><h3 class="num">50 de 50</h3><p>Testes das travas passando numa VPS com Ubuntu 24.04. O instalador roda todos eles antes de ligar o bot; se um falhar, ele para.</p></div>
     <div class="card"><h3 class="num">18 recusas</h3><p>Comandos e atalhos perigosos que o bot recusa: apagar fora da pasta, encadear comandos, usar administrador, curinga, link que leva para fora, entre outros.</p></div>
-    <div class="card"><h3 class="num">14 confirmações</h3><p>Jeitos de responder conferidos um a um: "sim" e "sim, pode apagar" confirmam; "sim, não apaga" e "ok?" não.</p></div>
+    <div class="card"><h3 class="num">18 confirmações</h3><p>Jeitos de responder conferidos um a um: "sim", "sí" e "sim, pode apagar" confirmam; "sim, não apaga", "sí, pero antes" e "ok?" não.</p></div>
   </div>
-  <div class="card" style="margin-top:16px"><h3>🧪 O instalador, de ponta a ponta</h3><p>Rodamos o instalador numa pasta nova da VPS de teste, com um Telegram de mentira: os 45 testes passaram, o serviço subiu, um estranho mandou /start e foi recusado e anotado, o dono foi gravado, e a pergunta "quanto espaço livre tem no disco?" voltou com a resposta certa. Rodar de novo atualizou o bot sem perder o token.</p></div>
-  <div class="card" style="margin-top:16px"><h3>🔍 Furos achados e fechados</h3><p>Revisores independentes leram o código como quem quer quebrar. Cada rodada achou um furo diferente, e todos foram fechados com teste: a IA herdava permissões do servidor, conseguia ler fora da pasta, "sim, não apaga" contava como sim. A lista está no repositório.</p></div>
+  <div class="card" style="margin-top:16px"><h3>🧪 O instalador, de ponta a ponta</h3><p>Rodamos o instalador numa pasta nova da VPS de teste, com um Telegram de mentira: os testes passaram, o serviço subiu, um estranho mandou /start e foi recusado e anotado, o dono foi gravado, e a pergunta "quanto espaço livre tem no disco?" voltou com a resposta certa. Rodar de novo atualizou o bot sem perder o token.</p></div>
+  <div class="card" style="margin-top:16px"><h3>🔍 Furos achados e fechados</h3><p>Revisores independentes leram o código como quem quer quebrar. Cada rodada achou um furo diferente, e todos foram fechados com teste: a IA herdava permissões do servidor, conseguia ler fora da pasta (inclusive por um atalho de arquivo), "sim, não apaga" contava como sim. A lista está no repositório.</p></div>
 </div></section>
 
 <section id="faq"><div class="wrap">
@@ -294,9 +300,9 @@ Depois que eu rodar, me ajude a achar o meu ID do Telegram no registro do bot e 
   <h2>Antes de <span class="amb">começar</span></h2>
   <div class="grid g2">
     <div class="card"><h3>Preciso programar?</h3><p>Não. A sua IA instala; você só cria o bot no Telegram, cola o token quando ela pedir e diz "sim".</p></div>
-    <div class="card"><h3>Custa alguma coisa?</h3><p>O kit é grátis. O bot usa o Claude Code pela sua assinatura do Claude; não tem chave de API nem cobrança por uso. A VPS você já paga.</p></div>
+    <div class="card"><h3>Custa alguma coisa?</h3><p>O kit é grátis. O bot usa o Claude Code pela sua assinatura do Claude; não tem chave de API (a senha que algumas IAs usam para cobrar por uso) nem cobrança por uso. A VPS você já paga.</p></div>
     <div class="card"><h3>E se alguém achar o meu bot?</h3><p>Ele responde "Este bot é privado." a quem não é dono, e anota a tentativa. Ninguém fora da sua lista consegue pedir nada.</p></div>
-    <div class="card"><h3>Ele mexe em qualquer coisa do servidor?</h3><p>Não. Lê e muda só dentro da pasta de trabalho dele, e só depois do seu "sim". O resto do servidor ele só vê por fora (espaço em disco, nomes).</p></div>
+    <div class="card"><h3>Ele mexe em qualquer coisa do servidor?</h3><p>Não. Lê e muda só dentro da pasta de trabalho dele, e só depois do seu "sim". O resto do servidor ele só vê por fora (espaço em disco, nomes). Por isso ele não mexe, por exemplo, nos logs do sistema (os arquivos onde os programas anotam o que fizeram), a não ser que você copie para a pasta dele.</p></div>
     <div class="card"><h3>Funciona no Windows ou no Mac?</h3><p>O kit é para servidor Linux; testamos no Ubuntu 24.04. Você usa o celular para falar com ele.</p></div>
     <div class="card"><h3>Qual a diferença para o passo a passo?</h3><p>O <a href="https://inematds.github.io/telegram-vps-passo-a-passo/guia/" target="_blank" rel="noopener">passo a passo</a> ensina a construir o mesmo bot etapa por etapa. Este kit entrega pronto, com instalador.</p></div>
   </div>
